@@ -24,7 +24,7 @@ t_fractal   *create_struct(void)
 int close(int key_code, t_fractal *d)
 {
     mlx_destroy_window(d->mlx, d->win);
-    return (0);
+    exit (0);
 }
 
 int create_fract(int x, int y, int width, int height)
