@@ -34,8 +34,7 @@ typedef struct s_fractal
 	double	cy; //C's imaginary part
 	float	zoom_y;
 	float	zoom_x;
-	char	*which;
-	char	*addr;
+	int		*data;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
@@ -44,13 +43,13 @@ typedef struct s_fractal
 	int		max_i;
 }				t_fractal;
 
+void	mandelbrot(t_fractal mandelbrot, int x, int y, int width, int height);
 void	julia_plane(t_fractal *julia, int x, int y, int width, int height);
 void	mand_plane(t_fractal *mBrot, int x, int y, int width, int height);
-void	my_mlx_pixel_put(t_fractal *d, int i, int j, int color);
+void	julia(t_fractal julia, int x, int y, int width, int height);
+void	put_pixel_image(int x, int y, t_fractal *env, int color);
 void	which_fract(char *s, t_fractal d, int i, int j);
 int		zoom(int button, double x, double y, t_fractal *d);
-int		mandelbrot(int x, int y, int width, int height);
-int		julia(int x, int y, int width, int height);
 int		ft_exit(int keycode, t_fractal *d);
 int		ft_strcmp(char *s1, char *s2);
 

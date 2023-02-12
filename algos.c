@@ -12,6 +12,14 @@
 
 #include "fractal.h"
 
+void	put_pixel_image(int x, int y, t_fractal *env, int color)
+{
+	int pos;
+
+	pos = (y * 1000) + x;
+	env->data[pos] = color;
+}
+
 void    mand_plane(t_fractal *mBrot, int x, int y, int width, int height)
 {
     mBrot->max_i = 1000;
@@ -22,9 +30,8 @@ void    mand_plane(t_fractal *mBrot, int x, int y, int width, int height)
     mBrot->zy = 0;
 }
 
-int mandelbrot(int x, int y, int width, int height)
+void mandelbrot(t_fractal mBrot, int x, int y, int width, int height)
 {
-    t_fractal  mBrot;
     double      xtemp;
 
     mand_plane(&mBrot, x, y, width, height);
@@ -35,10 +42,7 @@ int mandelbrot(int x, int y, int width, int height)
         mBrot.zx = xtemp;
         mBrot.i++;
     }
-    if (mBrot.i == mBrot.max_i)
-        return 0;
-    else
-        return mBrot.i * WHITE / mBrot.max_i;
+    put_pixel_image(x, y, &mBrot, mBrot.i * VIOLET);
 }
 
 void    julia_plane(t_fractal *julia, int x, int y, int width, int height)
@@ -62,9 +66,8 @@ void    julia_plane(t_fractal *julia, int x, int y, int width, int height)
     julia->cy = 0.11301; 
 }
 
-int julia(int x, int y, int width, int height)
+void julia(t_fractal julia, int x, int y, int width, int height)
 {
-    t_fractal  julia;
     double      xtemp;
 
     julia_plane(&julia, x, y, width, height);
@@ -75,8 +78,5 @@ int julia(int x, int y, int width, int height)
         julia.zy = 2 * xtemp * julia.zy + julia.cy;
         julia.i++;
     }
-    if (julia.i != julia.max_i)
-        return julia.i * WHITE / julia.max_i;
-    else
-        return (VIOLET);
+    put_pixel_image(x, y, &julia, julia.i * VIOLET);
 }

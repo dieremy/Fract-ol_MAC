@@ -43,26 +43,12 @@ int zoom(int button, double x, double y, t_fractal *d)
     return (0);
 }
 
-void    my_mlx_pixel_put(t_fractal *d, int i, int j, int color)
-{
-    char    *dst;
-
-    dst = d->addr + (j * d->line_length + i * (d->bits_per_pixel / 8));
-    *(unsigned int*)dst = color;
-}
-
 void    which_fract(char *s, t_fractal d, int i, int j)
 {
     if (ft_strcmp(s, "Mandelbrot") == 0)
-    {
-        d.color = mandelbrot(i, j, WIDTH, HEIGHT);
-        my_mlx_pixel_put(&d, i, j, d.color);
-    }
+        mandelbrot(d, i, j, WIDTH, HEIGHT);
     else if (ft_strcmp(s, "Julia") == 0)
-    {
-        d.color = julia(i, j, WIDTH, HEIGHT);
-        my_mlx_pixel_put(&d, i, j, d.color);
-    }
+        julia(d, i, j, WIDTH, HEIGHT);
 }
 
 void    plotting(int ac, char **av, t_fractal data)
@@ -88,7 +74,7 @@ int main(int ac, char **av)
         d.mlx = mlx_init();
         d.win = mlx_new_window(d.mlx, WIDTH, HEIGHT, "FRACTAL");
         d.img = mlx_new_image(d.mlx, WIDTH, HEIGHT);
-        d.addr = mlx_get_data_addr(d.img, &d.bits_per_pixel, &d.line_length, &d.endian);
+        d.data = (int *)mlx_get_data_addr(d.img, &d.bits_per_pixel, &d.line_length, &d.endian);
         plotting(ac, av, d);
         mlx_put_image_to_window(d.mlx, d.win, d.img, 0, 0);
         mlx_hook(d.win, 2, 0, ft_exit, &d);
