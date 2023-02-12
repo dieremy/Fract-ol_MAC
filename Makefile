@@ -10,10 +10,10 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = fractal.c
+SRCS = fractal.c algos.c
 COMP = cc -Wall -Wextra -Werror
 MLX = -lmlx -framework OpenGL -framework AppKit
-NAME = fractol
+NAME = fractal
 OBJS = $(SRCS:.c=.o)
 
 all : $(NAME)

@@ -17,5 +17,8 @@
 # define KEY_PLUS 69
 # define KEY_MINUS 78
 # define KEY_DOWN 2
+# define MOUSEDOWN 4
+# define MOUSEUP 5
+# define ON_DESTROY 17
 
 #endif

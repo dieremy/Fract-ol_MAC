@@ -38,5 +38,6 @@
 # define MEDIUMBLUE	0x0084CA
 # define BRIGHTGREEN	0x00B08B
 # define NEUTRALBLACK	0x222223
+# define WHITE 0xFFFFFF
 
 #endif
