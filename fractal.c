@@ -63,16 +63,25 @@ void    which_fract(char *s, t_fractal d, int i, int j)
         d.color = julia(i, j, WIDTH, HEIGHT);
         my_mlx_pixel_put(&d, i, j, d.color);
     }
-    // mlx_put_image_to_window(d.mlx, d.win, d.img, 0, 0);
-    // mlx_hook(d.win, 2, 0, ft_exit, &d);
-    // mlx_loop(d.mlx);
+}
+
+void    plotting(int ac, char **av, t_fractal data)
+{
+    int i;
+    int j;
+
+    i = -1;
+    while (++i < WIDTH)
+    {
+        j = -1;
+        while (++j < WIDTH)
+            which_fract(av[1], data, i, j);
+    }
 }
 
 int main(int ac, char **av)
 {
     t_fractal   d;
-    int         i;
-    int         j;
 
     if (ac == 2)
     {
@@ -80,13 +89,7 @@ int main(int ac, char **av)
         d.win = mlx_new_window(d.mlx, WIDTH, HEIGHT, "FRACTAL");
         d.img = mlx_new_image(d.mlx, WIDTH, HEIGHT);
         d.addr = mlx_get_data_addr(d.img, &d.bits_per_pixel, &d.line_length, &d.endian);
-        i = -1;
-        while (++i < WIDTH)
-        {
-            j = -1;
-            while (++j < WIDTH)
-                which_fract(av[1], d, i, j);
-        }
+        plotting(ac, av, d);
         mlx_put_image_to_window(d.mlx, d.win, d.img, 0, 0);
         mlx_hook(d.win, 2, 0, ft_exit, &d);
         mlx_loop(d.mlx);
