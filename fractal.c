@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minilibx-linux/mlx.h"
+#include "minilibx_mms_20191025_beta/mlx.h"
 #include "fractal.h"
 
 int ft_strcmp(char *s1, char *s2)
