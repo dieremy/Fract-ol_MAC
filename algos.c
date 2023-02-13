@@ -16,7 +16,7 @@ void	put_pixel_image(int x, int y, t_fractal *env, int color)
 {
 	int pos;
 
-	pos = (y * 1000) + x;
+	pos = (y * HW) + x;
 	env->addr[pos] = color;
 }
 
@@ -59,19 +59,19 @@ void    julia_plane(t_fractal *julia)
 {
     // julia->zx = (x - width / 2.0) * 4.0 / width;
     // julia->zy = (y - height / 2.0) * 4.0 / width;
-    double zoom_x;
-    double zoom_y;
+    // double zoom_x;
+    // double zoom_y;
     double x1 = -1;
     double x2 = 1;
     double y1 = -1.2;
     double y2 = 1.2;
 
-    zoom_x = HW / (x2 - x1);
-    zoom_y = HW / (y2 - y1);
+    // zoom_x = HW / (x2 - x1);
+    // zoom_y = HW / (y2 - y1);
     julia->max_i = 1000;
     julia->i = 0;
-    julia->zx = julia->x / zoom_x + x1;
-    julia->zy = julia->y / zoom_y + y1;
+    julia->zx = julia->x / (HW / (x2 - x1)) + x1;
+    julia->zy = julia->y / (HW / (y2 - y1)) + y1;
     julia->cx = -0.74543;
     julia->cy = 0.11301; 
 }
