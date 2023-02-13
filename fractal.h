@@ -15,6 +15,7 @@
 
 # define HW 1000
 
+# include "minilibx-linux/mlx.h"
 # include "hook.h"
 # include "colors.h"
 # include <stdio.h>
@@ -31,26 +32,28 @@ typedef struct s_fractal
 	double	zy; //Z's imaginary part
 	double	cx; //C's real part
 	double	cy; //C's imaginary part
-	float	zoom_y;
-	float	zoom_x;
+	double	x_start; //x1 negative(sx)
+	double	x_end; //x2 positive(dx)
+	double	y_start; //y1 negative(down)
+	double	y_end; //y2 positive(up)
 	float		x; //1. axis for nested cicle
 	float		y; //2. axis for nested cicle
 	int		*addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-	int		color;
 	int		i;
 	int		max_i;
 }				t_fractal;
 
-void	mandelbrot(t_fractal mBrot);
-void	julia_plane(t_fractal *julia);
-void	mand_plane(t_fractal *mBrot);
-void	julia(t_fractal julia);
 void	put_pixel_image(int x, int y, t_fractal *env, int color);
 void	which_fract(char *s, t_fractal d);
-int		zoom(int button, double x, double y, t_fractal *d);
+void	julia_plane(t_fractal *julia);
+void	mand_plane(t_fractal *mBrot);
+void	mandelbrot(t_fractal mBrot);
+void	julia(t_fractal julia);
+int		mouse_down(int button, double x, double y, t_fractal *d);
+int		zoom(t_fractal *d, double x, double y, double zoom);
 int		ft_exit(int keycode, t_fractal *d);
 int		ft_strcmp(char *s1, char *s2);
 
