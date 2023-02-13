@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minilibx_mms_20191025_beta/mlx.h"
+#include "minilibx-linux/mlx.h"
 #include "fractal.h"
 
 int ft_strcmp(char *s1, char *s2)
@@ -43,26 +43,12 @@ int zoom(int button, double x, double y, t_fractal *d)
     return (0);
 }
 
-void    which_fract(char *s, t_fractal d, int i, int j)
+void    which_fract(char *s, t_fractal d)
 {
     if (ft_strcmp(s, "Mandelbrot") == 0)
-        mandelbrot(d, i, j, WIDTH, HEIGHT);
+        mandelbrot(d);
     else if (ft_strcmp(s, "Julia") == 0)
-        julia(d, i, j, WIDTH, HEIGHT);
-}
-
-void    plotting(int ac, char **av, t_fractal data)
-{
-    int i;
-    int j;
-
-    i = -1;
-    while (++i < WIDTH)
-    {
-        j = -1;
-        while (++j < WIDTH)
-            which_fract(av[1], data, i, j);
-    }
+        julia(d);
 }
 
 int main(int ac, char **av)
@@ -72,10 +58,10 @@ int main(int ac, char **av)
     if (ac == 2)
     {
         d.mlx = mlx_init();
-        d.win = mlx_new_window(d.mlx, WIDTH, HEIGHT, "FRACTAL");
-        d.img = mlx_new_image(d.mlx, WIDTH, HEIGHT);
-        d.data = (int *)mlx_get_data_addr(d.img, &d.bits_per_pixel, &d.line_length, &d.endian);
-        plotting(ac, av, d);
+        d.win = mlx_new_window(d.mlx, HW, HW, "FRACTAL");
+        d.img = mlx_new_image(d.mlx, HW, HW);
+        d.addr = (int *)mlx_get_data_addr(d.img, &d.bits_per_pixel, &d.line_length, &d.endian);
+        which_fract(av[1], d);
         mlx_put_image_to_window(d.mlx, d.win, d.img, 0, 0);
         mlx_hook(d.win, 2, 0, ft_exit, &d);
         mlx_loop(d.mlx);

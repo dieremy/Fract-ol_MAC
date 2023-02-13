@@ -13,8 +13,7 @@
 #ifndef FRACTAL_H
 # define FRACTAL_H
 
-# define HEIGHT 1000
-# define WIDTH 1000
+# define HW 1000
 
 # include "hook.h"
 # include "colors.h"
@@ -34,7 +33,9 @@ typedef struct s_fractal
 	double	cy; //C's imaginary part
 	float	zoom_y;
 	float	zoom_x;
-	int		*data;
+	float		x; //1. axis for nested cicle
+	float		y; //2. axis for nested cicle
+	int		*addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
@@ -43,12 +44,12 @@ typedef struct s_fractal
 	int		max_i;
 }				t_fractal;
 
-void	mandelbrot(t_fractal mandelbrot, int x, int y, int width, int height);
-void	julia_plane(t_fractal *julia, int x, int y, int width, int height);
-void	mand_plane(t_fractal *mBrot, int x, int y, int width, int height);
-void	julia(t_fractal julia, int x, int y, int width, int height);
+void	mandelbrot(t_fractal mBrot);
+void	julia_plane(t_fractal *julia);
+void	mand_plane(t_fractal *mBrot);
+void	julia(t_fractal julia);
 void	put_pixel_image(int x, int y, t_fractal *env, int color);
-void	which_fract(char *s, t_fractal d, int i, int j);
+void	which_fract(char *s, t_fractal d);
 int		zoom(int button, double x, double y, t_fractal *d);
 int		ft_exit(int keycode, t_fractal *d);
 int		ft_strcmp(char *s1, char *s2);
