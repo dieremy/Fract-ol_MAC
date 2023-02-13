@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = fractal.c algos.c
+SRCS = fractal.c algos.c event.c
 COMP = cc -Wall -Wextra -Werror
 MLX = -lmlx -framework OpenGL -framework AppKit
 NAME = fractal
