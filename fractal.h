@@ -15,7 +15,7 @@
 
 # define HW 1000
 
-# include "minilibx-linux/mlx.h"
+# include "minilibx_mms_20191025_beta/mlx.h"
 # include "hook.h"
 # include "colors.h"
 # include <stdio.h>
