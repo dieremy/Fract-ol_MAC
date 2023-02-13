@@ -24,10 +24,14 @@ void    mand_plane(t_fractal *mBrot)
 {
     mBrot->max_i = 1000;
     mBrot->i = 0;
-    mBrot->cx = (mBrot->x - HW / 2.0) * 4.0 / HW;
-    mBrot->cy = (mBrot->y - HW / 2.0) * 4.0 / HW;
+    mBrot->x_start = -2.10;
+    mBrot->x_end = 0.6;
+    mBrot->y_start = -1.2;
+    mBrot->y_end = 1.2;
+    mBrot->cx = mBrot->x / (HW / (mBrot->x_end - mBrot->x_start)) + mBrot->x_start;
+    mBrot->cy = mBrot->y / (HW / (mBrot->y_end - mBrot->y_start)) + mBrot->y_start;
     mBrot->zx = 0;
-    mBrot->zy = 0;
+    mBrot->zy = 0; 
 }
 
 void mandelbrot(t_fractal mBrot)
@@ -57,21 +61,14 @@ void mandelbrot(t_fractal mBrot)
 
 void    julia_plane(t_fractal *julia)
 {
-    // julia->zx = (x - width / 2.0) * 4.0 / width;
-    // julia->zy = (y - height / 2.0) * 4.0 / width;
-    // double zoom_x;
-    // double zoom_y;
-    double x1 = -1;
-    double x2 = 1;
-    double y1 = -1.2;
-    double y2 = 1.2;
-
-    // zoom_x = HW / (x2 - x1);
-    // zoom_y = HW / (y2 - y1);
     julia->max_i = 1000;
     julia->i = 0;
-    julia->zx = julia->x / (HW / (x2 - x1)) + x1;
-    julia->zy = julia->y / (HW / (y2 - y1)) + y1;
+    julia->x_start = -1;
+    julia->x_end = 1;
+    julia->y_start = -1.2;
+    julia->y_end = 1.2;
+    julia->zx = julia->x / (HW / (julia->x_end - julia->x_start)) + julia->x_start;
+    julia->zy = julia->y / (HW / (julia->y_end - julia->y_start)) + julia->y_start;
     julia->cx = -0.74543;
     julia->cy = 0.11301; 
 }

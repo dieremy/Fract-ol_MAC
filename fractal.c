@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minilibx_mms_20191025_beta/mlx.h"
 #include "fractal.h"
 
 int ft_strcmp(char *s1, char *s2)
@@ -23,25 +22,37 @@ int ft_strcmp(char *s1, char *s2)
     return (s1[i] - s2[i]);
 }
 
-int ft_exit(int keycode, t_fractal *d)
-{
-    if (keycode == KEY_ESC)
-    {
-        mlx_destroy_window(d->mlx, d->win);
-        exit(0);
-    }
-    return (0);
-}
+// int ft_exit(int keycode, t_fractal *d)
+// {
+//     if (keycode == KEY_ESC)
+//     {
+//         mlx_destroy_window(d->mlx, d->win);
+//         exit(1);
+//     }
+//     return (0);
+// }
 
-int zoom(int button, double x, double y, t_fractal *d)
-{
-    if (button == 5)
-    {
-        x *= 1.1;
-        y *= 1.1;
-    }
-    return (0);
-}
+// int mouse_down(int button, double x, double y, t_fractal *d)
+// {
+//     if ( button == 5)
+//         zoom(d, x, y, 1.1);
+//     else if (button == 4)
+//         zoom(d, x, y, 0.9);
+//     return (1);  
+// }
+
+// int zoom(t_fractal *d, double x, double y, double zoom)
+// {
+//     double  x_x;
+//     double  y_y;
+
+//     x_x = ((d->x / HW) * (d->x_end - d->x_start) + d->x_start);
+//     y_y = ((d->y / HW) * (d->y_end - d->y_start) + d->y_start);
+//     d->x_start = x_x + ((d->x_start - x_x) * zoom);
+//     d->y_start = y_y + ((d->y_start - y_y) * zoom);
+//     d->y_end = y_y + ((d->y_end - y_y) * zoom);
+//     d->x_end = x_x + ((d->x_end - x_x) * zoom);
+// }
 
 void    which_fract(char *s, t_fractal d)
 {
@@ -64,6 +75,7 @@ int main(int ac, char **av)
         which_fract(av[1], d);
         mlx_put_image_to_window(d.mlx, d.win, d.img, 0, 0);
         mlx_hook(d.win, 2, 0, ft_exit, &d);
+        mlx_hook(d.win, 4, 1, mouse_down, &d);
         mlx_loop(d.mlx);
     }
     else
