@@ -12,24 +12,28 @@
 
 #include "fractal.h"
 
-void	put_pixel_image(int x, int y, t_fractal *env, int color)
+void	put_pixel_image(int x, int y, t_fractal *d, int color)
 {
 	int pos;
 
 	pos = (y * HW) + x;
-	env->addr[pos] = color;
+	d->addr[pos] = color;
 }
 
 void    mand_plane(t_fractal *mBrot)
 {
     mBrot->max_i = 1000;
     mBrot->i = 0;
-    mBrot->x_start = -2.10;
-    mBrot->x_end = 0.6;
-    mBrot->y_start = -1.2;
-    mBrot->y_end = 1.2;
-    mBrot->cx = mBrot->x / (HW / (mBrot->x_end - mBrot->x_start)) + mBrot->x_start;
-    mBrot->cy = mBrot->y / (HW / (mBrot->y_end - mBrot->y_start)) + mBrot->y_start;
+    // mBrot->x_start = -2.10;
+    // mBrot->x_end = 0.6;
+    // mBrot->y_start = -1.2;
+    // mBrot->y_end = 1.2;
+    mBrot->x_start = -2.0;
+    mBrot->x_end = 2.0;
+    mBrot->y_start = -2.0;
+    mBrot->y_end = 2.0;
+    mBrot->cx = (mBrot->x / (HW / (mBrot->x_end - mBrot->x_start)) + mBrot->x_start) * 1.0/mBrot->zoom + mBrot->x_shift; 
+    mBrot->cy = (mBrot->y / (HW / (mBrot->y_end - mBrot->y_start)) + mBrot->y_start) * 1.0/mBrot->zoom + mBrot->y_shift;
     mBrot->zx = 0;
     mBrot->zy = 0; 
 }
@@ -57,6 +61,8 @@ void mandelbrot(t_fractal *mBrot)
         }
         mBrot->x++;
     }
+    mlx_put_image_to_window(mBrot->mlx, mBrot->win, mBrot->img, 0, 0);
+    mlx_look(mBrot);
 }
 
 void    julia_plane(t_fractal *julia)
@@ -67,8 +73,8 @@ void    julia_plane(t_fractal *julia)
     julia->x_end = 1;
     julia->y_start = -1.2;
     julia->y_end = 1.2;
-    julia->zx = julia->x / (HW / (julia->x_end - julia->x_start)) + julia->x_start;
-    julia->zy = julia->y / (HW / (julia->y_end - julia->y_start)) + julia->y_start;
+    julia->zx = (julia->x / (HW / (julia->x_end - julia->x_start)) + julia->x_start) * 1.0/julia->zoom + julia->x_shift;
+    julia->zy = (julia->y / (HW / (julia->y_end - julia->y_start)) + julia->y_start) * 1.0/julia->zoom + julia->y_shift;
     julia->cx = -0.74543;
     julia->cy = 0.11301; 
 }
@@ -96,4 +102,6 @@ void julia(t_fractal *julia)
         }
         julia->x++;
     }
+    mlx_put_image_to_window(julia->mlx, julia->win, julia->img, 0, 0);
+    mlx_look(julia);
 }
