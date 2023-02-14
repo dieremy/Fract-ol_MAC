@@ -47,13 +47,13 @@ typedef struct s_fractal
 }				t_fractal;
 
 void	put_pixel_image(int x, int y, t_fractal *env, int color);
-void	which_fract(char *s, t_fractal d);
+void	zoom(t_fractal *d, double x, double y, double zoom);
+void	which_fract(char *s, t_fractal *d);
 void	julia_plane(t_fractal *julia);
 void	mand_plane(t_fractal *mBrot);
-void	mandelbrot(t_fractal mBrot);
-void	julia(t_fractal julia);
+void	mandelbrot(t_fractal *mBrot);
+void	julia(t_fractal *julia);
 int		mouse_down(int button, double x, double y, t_fractal *d);
-int		zoom(t_fractal *d, double x, double y, double zoom);
 int		ft_exit(int keycode, t_fractal *d);
 int		ft_strcmp(char *s1, char *s2);
 

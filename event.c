@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   event.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: robegarc <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/14 09:46:56 by robegarc          #+#    #+#             */
+/*   Updated: 2023/02/14 09:46:59 by robegarc         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractal.h"
 
 int mouse_down(int button, double x, double y, t_fractal *d)
@@ -9,7 +21,7 @@ int mouse_down(int button, double x, double y, t_fractal *d)
     return (1);  
 }
 
-int zoom(t_fractal *d, double x, double y, double zoom)
+void zoom(t_fractal *d, double x, double y, double zoom)
 {
     double  x_x;
     double  y_y;

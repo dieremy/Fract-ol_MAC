@@ -34,28 +34,28 @@ void    mand_plane(t_fractal *mBrot)
     mBrot->zy = 0; 
 }
 
-void mandelbrot(t_fractal mBrot)
+void mandelbrot(t_fractal *mBrot)
 {
     double      xtemp;
 
-    mBrot.x = 0;
-    while (mBrot.x < HW)
+    mBrot->x = 0;
+    while (mBrot->x < HW)
     {
-        mBrot.y = 0;
-        while (mBrot.y < HW)
+        mBrot->y = 0;
+        while (mBrot->y < HW)
         {
-            mand_plane(&mBrot);
-            while (mBrot.zx * mBrot.zx + mBrot.zy * mBrot.zy < 4 && mBrot.i < mBrot.max_i)
+            mand_plane(mBrot);
+            while (mBrot->zx * mBrot->zx + mBrot->zy * mBrot->zy < 4 && mBrot->i < mBrot->max_i)
             {
-                xtemp = mBrot.zx * mBrot.zx - mBrot.zy * mBrot.zy + mBrot.cx;
-                mBrot.zy = 2 * mBrot.zx * mBrot.zy + mBrot.cy;
-                mBrot.zx = xtemp;
-                mBrot.i++;
+                xtemp = mBrot->zx * mBrot->zx - mBrot->zy * mBrot->zy + mBrot->cx;
+                mBrot->zy = 2 * mBrot->zx * mBrot->zy + mBrot->cy;
+                mBrot->zx = xtemp;
+                mBrot->i++;
             }
-            mBrot.y++;
-            put_pixel_image(mBrot.x, mBrot.y, &mBrot, mBrot.i * VIOLET);
+            put_pixel_image(mBrot->x, mBrot->y, mBrot, mBrot->i * VIOLET);
+            mBrot->y++;
         }
-        mBrot.x++;
+        mBrot->x++;
     }
 }
 
@@ -73,27 +73,27 @@ void    julia_plane(t_fractal *julia)
     julia->cy = 0.11301; 
 }
 
-void julia(t_fractal julia)
+void julia(t_fractal *julia)
 {
     double      xtemp;
 
-    julia.x = 0;
-    while (julia.x < HW)
+    julia->x = 0;
+    while (julia->x < HW)
     {
-        julia.y = 0;
-        while (julia.y < HW)
+        julia->y = 0;
+        while (julia->y < HW)
         {
-            julia_plane(&julia);
-            while (julia.zx * julia.zx + julia.zy * julia.zy < 4 && julia.i < julia.max_i)
+            julia_plane(julia);
+            while (julia->zx * julia->zx + julia->zy * julia->zy < 4 && julia->i < julia->max_i)
             {
-                xtemp = julia.zx;
-                julia.zx = julia.zx * julia.zx - julia.zy * julia.zy + julia.cx;
-                julia.zy = 2 * xtemp * julia.zy + julia.cy;
-                julia.i++;
+                xtemp = julia->zx;
+                julia->zx = julia->zx * julia->zx - julia->zy * julia->zy + julia->cx;
+                julia->zy = 2 * xtemp * julia->zy + julia->cy;
+                julia->i++;
             }
-            julia.y++;
-            put_pixel_image(julia.x, julia.y, &julia, julia.i * VIOLET);
+            put_pixel_image(julia->x, julia->y, julia, julia->i * VIOLET);
+            julia->y++;
         }
-        julia.x++;
+        julia->x++;
     }
 }

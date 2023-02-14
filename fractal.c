@@ -52,14 +52,21 @@ int ft_strcmp(char *s1, char *s2)
 //     d->y_start = y_y + ((d->y_start - y_y) * zoom);
 //     d->y_end = y_y + ((d->y_end - y_y) * zoom);
 //     d->x_end = x_x + ((d->x_end - x_x) * zoom);
+//     return(1);
 // }
 
-void    which_fract(char *s, t_fractal d)
+void    which_fract(char *s, t_fractal *d)
 {
     if (ft_strcmp(s, "Mandelbrot") == 0)
         mandelbrot(d);
     else if (ft_strcmp(s, "Julia") == 0)
         julia(d);
+    else
+    {
+        write(1, "USAGE: ./fractol [fractal name]\n", 32);
+        write(1, "OPTIONS: Mandelbrot\tJulia", 26);
+        exit (1);
+    }
 }
 
 int main(int ac, char **av)
@@ -72,7 +79,7 @@ int main(int ac, char **av)
         d.win = mlx_new_window(d.mlx, HW, HW, "FRACTAL");
         d.img = mlx_new_image(d.mlx, HW, HW);
         d.addr = (int *)mlx_get_data_addr(d.img, &d.bits_per_pixel, &d.line_length, &d.endian);
-        which_fract(av[1], d);
+        which_fract(av[1], &d);
         mlx_put_image_to_window(d.mlx, d.win, d.img, 0, 0);
         mlx_hook(d.win, 2, 0, ft_exit, &d);
         mlx_hook(d.win, 4, 1, mouse_down, &d);
