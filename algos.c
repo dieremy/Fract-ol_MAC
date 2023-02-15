@@ -22,6 +22,7 @@ void	put_pixel_image(int x, int y, t_fractal *d, int color)
 
 void    mand_plane(t_fractal *mBrot)
 {
+    mBrot->color = BLACK;
     mBrot->max_i = 500;
     mBrot->i = 0;
     // mBrot->x_start = -2.10;
@@ -56,7 +57,7 @@ void mandelbrot(t_fractal *mBrot)
                 mBrot->zx = xtemp;
                 mBrot->i++;
             }
-            put_pixel_image(mBrot->x, mBrot->y, mBrot, mBrot->i * VIOLET);
+            put_pixel_image(mBrot->x, mBrot->y, mBrot, mBrot->color * mBrot->i / 100);
             mBrot->y++;
         }
         mBrot->x++;
@@ -67,6 +68,7 @@ void mandelbrot(t_fractal *mBrot)
 
 void    julia_plane(t_fractal *julia)
 {
+    julia->color = julia->i * VIOLET;
     julia->max_i = 1000;
     julia->i = 0;
     julia->x_start = -1;
@@ -97,7 +99,7 @@ void julia(t_fractal *julia)
                 julia->zy = 2 * xtemp * julia->zy + julia->cy;
                 julia->i++;
             }
-            put_pixel_image(julia->x, julia->y, julia, julia->i * VIOLET);
+            put_pixel_image(julia->x, julia->y, julia, julia->color);
             julia->y++;
         }
         julia->x++;

@@ -44,8 +44,14 @@ void zoom(t_fractal *d, double x, double y, double zoom)
 
 int ft_key_press(int keycode, t_fractal *d)
 {
-    // printf("%d\n", keycode);
-    if (keycode == KEY_ESC)
+    int i = 1;
+    printf("%d\n", keycode);
+    if (keycode == KEY_SHIFT || keycode == 258)
+    {
+        d->color += VIOLET;
+        // mlx_clear_window(d->mlx, d->win);
+    }
+    if (keycode == KEY_ESC || keycode == KEY_X)
     {
         mlx_destroy_window(d->mlx, d->win);
         exit(0);

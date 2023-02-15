@@ -47,6 +47,7 @@ typedef struct s_fractal
 	int		endian;
 	int		i;
 	int		max_i;
+	int		color;
 	char	*name;
 }				t_fractal;
 
