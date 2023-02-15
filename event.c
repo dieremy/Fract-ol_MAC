@@ -65,7 +65,7 @@ int ft_key_press(int keycode, t_fractal *d)
     else if (keycode == KEY_UP) //up
         d->y_shift -= 0.02;
     else if (keycode == KEY_SHIFT || keycode == 258)
-        d->shade += 2000;
+        d->shade -= 2000;
     which_fract(d);
     return (0);
 }
