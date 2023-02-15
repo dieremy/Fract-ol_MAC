@@ -22,7 +22,7 @@ void	put_pixel_image(int x, int y, t_fractal *d, int color)
 
 void    mand_plane(t_fractal *mBrot)
 {
-    mBrot->max_i = 1000;
+    mBrot->max_i = 500;
     mBrot->i = 0;
     // mBrot->x_start = -2.10;
     // mBrot->x_end = 0.6;
@@ -32,8 +32,8 @@ void    mand_plane(t_fractal *mBrot)
     mBrot->x_end = 2.0;
     mBrot->y_start = -2.0;
     mBrot->y_end = 2.0;
-    mBrot->cx = (mBrot->x / (HW / (mBrot->x_end - mBrot->x_start)) + mBrot->x_start) * 1.0/mBrot->zoom + mBrot->x_shift; 
-    mBrot->cy = (mBrot->y / (HW / (mBrot->y_end - mBrot->y_start)) + mBrot->y_start) * 1.0/mBrot->zoom + mBrot->y_shift;
+    mBrot->cx = (mBrot->x / (HW / (mBrot->x_end - mBrot->x_start)) + mBrot->x_start) * mBrot->zoom + mBrot->x_shift;// 1.0/mBrot->zoom + mBrot->x_shift; 
+    mBrot->cy = (mBrot->y / (HW / (mBrot->y_end - mBrot->y_start)) + mBrot->y_start) * mBrot->zoom + mBrot->y_shift; //1.0/mBrot->zoom + mBrot->y_shift;
     mBrot->zx = 0;
     mBrot->zy = 0; 
 }
@@ -73,8 +73,8 @@ void    julia_plane(t_fractal *julia)
     julia->x_end = 1;
     julia->y_start = -1.2;
     julia->y_end = 1.2;
-    julia->zx = (julia->x / (HW / (julia->x_end - julia->x_start)) + julia->x_start) * 1.0/julia->zoom + julia->x_shift;
-    julia->zy = (julia->y / (HW / (julia->y_end - julia->y_start)) + julia->y_start) * 1.0/julia->zoom + julia->y_shift;
+    julia->zx = (julia->x / (HW / (julia->x_end - julia->x_start)) + julia->x_start) * julia->zoom + julia->x_shift;// 1.5/julia->zoom + julia->x_shift;
+    julia->zy = (julia->y / (HW / (julia->y_end - julia->y_start)) + julia->y_start) * julia->zoom + julia->y_shift;// 1.5/julia->zoom + julia->y_shift;
     julia->cx = -0.74543;
     julia->cy = 0.11301; 
 }
