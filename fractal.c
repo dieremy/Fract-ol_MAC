@@ -28,6 +28,7 @@ void    id(char *s, t_fractal *d)
     d->zoom = 1;
     d->x_shift = 0;
     d->y_shift = 0;
+    d->shade = 0;
 }
 
 void    which_fract(t_fractal *d)
