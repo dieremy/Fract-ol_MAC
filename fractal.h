@@ -48,6 +48,7 @@ typedef struct s_fractal
 	int		i;
 	int		max_i;
 	int		color;
+	int		shade;
 	char	*name;
 }				t_fractal;
 
