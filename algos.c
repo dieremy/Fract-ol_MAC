@@ -39,11 +39,11 @@ void mandelbrot(t_fractal *mBrot)
 {
     double      xtemp;
 
-    mBrot->x = 0;
-    while (mBrot->x < HW)
+    mBrot->x = -1;
+    while (++mBrot->x < HW)
     {
-        mBrot->y = 0;
-        while (mBrot->y < HW)
+        mBrot->y = -1;
+        while (++mBrot->y < HW)
         {
             mand_plane(mBrot);
             while (mBrot->zx * mBrot->zx + mBrot->zy * mBrot->zy < 4 && mBrot->i < mBrot->max_i)
@@ -54,11 +54,8 @@ void mandelbrot(t_fractal *mBrot)
                 mBrot->i++;
             }
             put_pixel_image(mBrot->x, mBrot->y, mBrot, mBrot->color);
-            mBrot->y++;
         }
-        mBrot->x++;
     }
-    mlx_put_image_to_window(mBrot->mlx, mBrot->win, mBrot->img, 0, 0);
     mlx_look(mBrot);
 }
 
@@ -81,11 +78,11 @@ void julia(t_fractal *julia)
 {
     double      xtemp;
 
-    julia->x = 0;
-    while (julia->x < HW)
+    julia->x = -1;
+    while (++julia->x < HW)
     {
-        julia->y = 0;
-        while (julia->y < HW)
+        julia->y = -1;
+        while (++julia->y < HW)
         {
             julia_plane(julia);
             while (julia->zx * julia->zx + julia->zy * julia->zy < 4 && julia->i < julia->max_i)
@@ -96,11 +93,8 @@ void julia(t_fractal *julia)
                 julia->i++;
             }
             put_pixel_image(julia->x, julia->y, julia, julia->color);
-            julia->y++;
         }
-        julia->x++;
     }
-    mlx_put_image_to_window(julia->mlx, julia->win, julia->img, 0, 0);
     mlx_look(julia);
 }
 
@@ -130,11 +124,11 @@ void burningship(t_fractal *burn)
 {
     double      xtemp;
 
-    burn->x = 0;
-    while (burn->x < HW)
+    burn->x = -1;
+    while (++burn->x < HW)
     {
-        burn->y = 0;
-        while (burn->y < HW)
+        burn->y = -1;
+        while (++burn->y < HW)
         {
             burn_plane(burn);
             while (burn->zx * burn->zx + burn->zy * burn->zy < 4 && burn->i < burn->max_i)
@@ -145,10 +139,7 @@ void burningship(t_fractal *burn)
                 burn->i++;
             }
             put_pixel_image(burn->x, burn->y, burn, burn->color);
-            burn->y++;
         }
-        burn->x++;
     }
-    mlx_put_image_to_window(burn->mlx, burn->win, burn->img, 0, 0);
     mlx_look(burn);
 }

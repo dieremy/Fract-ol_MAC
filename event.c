@@ -32,6 +32,7 @@ int mouse_down(int button, long double x, long double y, t_fractal *d)
 
 void    mlx_look(t_fractal *d)
 {
+    mlx_put_image_to_window(d->mlx, d->win, d->img, 0, 0);
     mlx_hook(d->win, 2, 4, ft_key_press, d);
     mlx_hook(d->win, 4, 3, mouse_down, d);
     mlx_mouse_hook(d->win, mouse_down, d);
