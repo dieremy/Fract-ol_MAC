@@ -29,20 +29,38 @@ void    id(char *s, t_fractal *d)
     d->x_shift = 0;
     d->y_shift = 0;
     d->shade = 0;
+    d->scaling = 1.2;
+}
+
+void    description(int ac, char **av)
+{
+    if (ft_strcmp(av[1], "Mandelbrot") == 0 || ft_strcmp(av[1], "Julia") == 0 || ft_strcmp(av[1], "Burningship") == 0)
+    {
+        write(1, "KEYBOARD SHORCUTS\n\n", 20);
+        write(1, "CLOSE THE PROGRAM:\tX/ESC\n", 25);
+        write(1, "CHANGE COLOR SHADE:\tSHIFT\n", 26);
+        write(1, "MOVE FRACTAL:\t\tARROW-LEFT/ARROW-RIGHT/ARROW-UP/ARROW-DOWN\n", 58);
+        write(1, "ZOOM/UNZOOM:\t\tPLUS/MINUS\n", 25);
+        write(1, "CHANGE TO JULIA:\tJ\n", 19);
+        write(1, "CHANGE TO MANDELBROT:\tM\n", 24);
+        write(1, "CHANGE TO BURNINGSHIP:\tB\n", 25);
+    }
 }
 
 void    which_fract(t_fractal *d)
 {
-    if (ft_strcmp(d->name, "Mandelbrot") == 0)
-        mandelbrot(d);
-    else if (ft_strcmp(d->name, "Julia") == 0)
-        julia(d);
-    else
+    if (ft_strcmp(d->name, "Mandelbrot") != 0 && ft_strcmp(d->name, "Julia") != 0 && ft_strcmp(d->name, "Burningship") != 0)
     {
         write(1, "USAGE: ./fractol [fractal name]\n", 32);
         write(1, "OPTIONS: Mandelbrot || Julia\n", 29);
         exit(0);
     }
+    if (ft_strcmp(d->name, "Mandelbrot") == 0)
+        mandelbrot(d);
+    else if (ft_strcmp(d->name, "Julia") == 0)
+        julia(d);
+    else if (ft_strcmp(d->name, "Burningship") == 0)
+        burningship(d);
 }
 
 int main(int ac, char **av)
@@ -51,6 +69,7 @@ int main(int ac, char **av)
 
     if (ac == 2)
     {
+        description(ac, av);
         d.mlx = mlx_init();
         d.win = mlx_new_window(d.mlx, HW, HW, "FRACTAL");
         d.img = mlx_new_image(d.mlx, HW, HW);
