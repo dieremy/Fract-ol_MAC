@@ -12,42 +12,31 @@
 
 #include "fractal.h"
 
-// void zoom(t_fractal *d)
-// {
-//     double  x_x;
-//     double  y_y;
-
-//     x_x = ((d->x / HW) * (d->x_end - d->x_start) + d->x_start);
-//     y_y = ((d->y / HW) * (d->y_end - d->y_start) + d->y_start);
-//     d->x_start = x_x + ((d->x_start - x_x) / (d->zoom * d->scaling));
-//     d->y_start = y_y + ((d->y_start - y_y) / (d->zoom * d->scaling));
-//     d->y_end = y_y + ((d->y_end - y_y)  / (d->zoom * d->scaling));
-//     d->x_end = x_x + ((d->x_end - x_x)  / (d->zoom * d->scaling));
-// }
-
-// int mouse_down(int button, long double x, long double y, t_fractal *d)
-// {
-//     printf("%f\n", d->zoom);
-//     printf("%d", button);
-//     if (button == 5)
-//     {
-//         // d->zoom *= d->scaling;
-//         // which_fract(d);
-//     }
-//     else if (button == 4)
-//     {
-//         // d->zoom /= d->scaling;
-//         // which_fract(d);
-//     }
-//     return (0);  
-// }
+int mouse_hook(int button, int x, int y, t_fractal *d)
+{
+    // printf("d--------->%p\n", (void*)d);
+    printf("%d\n", button);
+    if (button == 5)
+    {
+        d->y = y;
+        d->x = x;
+        d->zoom += 0.02;
+    }
+    else if (button == 4)
+    {
+        d->y = y;
+        d->x = x;
+        d->zoom -= 0.02;
+    }
+    which_fract(d);
+    return (0);  
+}
 
 void    mlx_look(t_fractal *d)
 {
     mlx_put_image_to_window(d->mlx, d->win, d->img, 0, 0);
     mlx_key_hook(d->win, ft_key_press, d);
-    // mlx_hook(d->win, 4, 3, mouse_down, d);
-    mlx_mouse_hook(d->win, ft_key_press, d);
+    mlx_mouse_hook(d->win, mouse_hook, d);
     mlx_loop(d->mlx);
     free(d);
 }
@@ -80,8 +69,8 @@ int ft_key_press3(int keycode, t_fractal *d)
 
 int ft_key_press2(int keycode, t_fractal *d)
 {
-    printf("d--------->%p\n", (void*)d);
-    printf("keycode---->%d\n", keycode);
+    // printf("d--------->%p\n", (void*)d);
+    // printf("keycode---->%d\n", keycode);
     if (keycode == KEY_M)
     {
         d->name = "Mandelbrot";
@@ -96,16 +85,6 @@ int ft_key_press2(int keycode, t_fractal *d)
     {
         d->name = "Burningship";
         which_fract(d);
-    }
-    if (keycode == 5)
-    {
-        // d->zoom += 0.002;
-        // which_fract(d);
-    }
-    else if (keycode == 4)
-    {
-        // d->zoom -= 0.002;
-        // which_fract(d);
     }
     else
         ft_key_press3(keycode, d);
