@@ -51,8 +51,8 @@ void    which_fract(t_fractal *d)
 {
     if (ft_strcmp(d->name, "Mandelbrot") != 0 && ft_strcmp(d->name, "Julia") != 0 && ft_strcmp(d->name, "Burningship") != 0)
     {
-        write(1, "USAGE: ./fractol [fractal name]\n", 32);
-        write(1, "OPTIONS: Mandelbrot || Julia\n", 29);
+        write(1, "USAGE: ./fractal", 16);
+        write(1, "\tMandelbrot\tJulia\tBurningship", 29);
         exit(0);
     }
     if (ft_strcmp(d->name, "Mandelbrot") == 0)
@@ -87,8 +87,8 @@ int main(int ac, char **av)
     }
     else
     {
-        write(1, "USAGE: ./fractol [fractal name]\n", 32);
-        write(1, "OPTIONS: Mandelbrot || Julia\n", 29);
+        write(1, "USAGE: ./fractal", 16);
+        write(1, "\tMandelbrot\tJulia\tBurningship", 29);
     }
     return (0);
 }

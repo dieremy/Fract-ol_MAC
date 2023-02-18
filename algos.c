@@ -62,7 +62,7 @@ void mandelbrot(t_fractal *mBrot)
 void    julia_plane(t_fractal *julia)
 {
     julia->color = julia->i * VIOLET + julia->shade;
-    julia->max_i = 1000;
+    julia->max_i = 500;
     julia->i = 0 + julia->iterations;
     julia->x_start = -1;
     julia->x_end = 1;
@@ -101,7 +101,7 @@ void julia(t_fractal *julia)
 void    burn_plane(t_fractal *burn)
 {
     burn->color = burn->i * BLACK + burn->shade;
-    burn->max_i = 70;
+    burn->max_i = 500;
     burn->i = 0 + burn->iterations;
     burn->x_start = -2.2;
     burn->x_end = 2.0;

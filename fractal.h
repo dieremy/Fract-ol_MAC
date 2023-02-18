@@ -64,7 +64,7 @@ void	mandelbrot(t_fractal *mBrot);
 void	julia(t_fractal *julia);
 void    mlx_look(t_fractal *d);
 void	description(int ac, char **av);
-int		mouse_down(int button, long double x, long double y, t_fractal *d);
+int		mouse_hook(int button, int x, int y, t_fractal *d);
 int		ft_key_press(int keycode, t_fractal *d);
 int		ft_strcmp(char *s1, char *s2);
 
