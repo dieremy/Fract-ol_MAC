@@ -29,7 +29,7 @@
 # define SHIFT_DX   258
 # define KEY_M      46
 # define KEY_J      38
-# define KEY_B      11
+# define KEY_D      2
 # define KEY_Z      6
 
 #endif

@@ -37,8 +37,6 @@ void    mand_plane(t_fractal *mBrot)
 
 void mandelbrot(t_fractal *mBrot)
 {
-    double      xtemp;
-
     mBrot->x = -1;
     while (++mBrot->x < HW)
     {
@@ -48,9 +46,9 @@ void mandelbrot(t_fractal *mBrot)
             mand_plane(mBrot);
             while (mBrot->zx * mBrot->zx + mBrot->zy * mBrot->zy < 4 && mBrot->i < mBrot->max_i)
             {
-                xtemp = mBrot->zx * mBrot->zx - mBrot->zy * mBrot->zy + mBrot->cx;
+                mBrot->tmp = mBrot->zx * mBrot->zx - mBrot->zy * mBrot->zy + mBrot->cx;
                 mBrot->zy = 2 * mBrot->zx * mBrot->zy + mBrot->cy;
-                mBrot->zx = xtemp;
+                mBrot->zx = mBrot->tmp;
                 mBrot->i++;
             }
             put_pixel_image(mBrot->x, mBrot->y, mBrot, mBrot->color);
@@ -76,8 +74,6 @@ void    julia_plane(t_fractal *julia)
 
 void julia(t_fractal *julia)
 {
-    double      xtemp;
-
     julia->x = -1;
     while (++julia->x < HW)
     {
@@ -87,9 +83,9 @@ void julia(t_fractal *julia)
             julia_plane(julia);
             while (julia->zx * julia->zx + julia->zy * julia->zy < 4 && julia->i < julia->max_i)
             {
-                xtemp = julia->zx;
+                julia->tmp = julia->zx;
                 julia->zx = julia->zx * julia->zx - julia->zy * julia->zy + julia->cx;
-                julia->zy = 2 * xtemp * julia->zy + julia->cy;
+                julia->zy = 2 * julia->tmp * julia->zy + julia->cy;
                 julia->i++;
             }
             put_pixel_image(julia->x, julia->y, julia, julia->color);
@@ -98,48 +94,40 @@ void julia(t_fractal *julia)
     mlx_look(julia);
 }
 
-void    burn_plane(t_fractal *burn)
+void    dou_plane(t_fractal *dou)
 {
-    burn->color = burn->i * BLACK + burn->shade;
-    burn->max_i = 500;
-    burn->i = 0 + burn->iterations;
-    burn->x_start = -2.2;
-    burn->x_end = 2.0;
-    burn->y_start = -2.2;
-    burn->y_end = 2.0;
-    burn->cx = (burn->x / (HW / (burn->x_end - burn->x_start)) + burn->x_start) * burn->zoom + burn->x_shift;
-    burn->cy = (burn->y / (HW / (burn->y_end - burn->y_start)) + burn->y_start) * burn->zoom + burn->y_shift;
-    burn->zx = 0;
-    burn->zy = 0; 
+    dou->color = dou->i * BLACK + dou->shade;
+    dou->max_i = 500;
+    dou->i = 0 + dou->iterations;
+    dou->x_start = -2.2;
+    dou->x_end = 2.0;
+    dou->y_start = -2.2;
+    dou->y_end = 2.0;
+    dou->zx = (dou->x / (HW / (dou->x_end - dou->x_start)) + dou->x_start) * dou->zoom + dou->x_shift;
+    dou->zy = (dou->y / (HW / (dou->y_end - dou->y_start)) + dou->y_start) * dou->zoom + dou->y_shift;
+    dou->cx = -0.12565651;
+    dou->cy = 0.65720; 
 }
 
-int ft_abs(int n)
-{
-    if (n < 0)
-        n *= -1;
-    return (n);
-}
 
-void burningship(t_fractal *burn)
+void douady(t_fractal *dou)
 {
-    double      xtemp;
-
-    burn->x = -1;
-    while (++burn->x < HW)
+    dou->x = -1;
+    while (++dou->x < HW)
     {
-        burn->y = -1;
-        while (++burn->y < HW)
+        dou->y = -1;
+        while (++dou->y < HW)
         {
-            burn_plane(burn);
-            while (burn->zx * burn->zx + burn->zy * burn->zy < 4 && burn->i < burn->max_i)
+            dou_plane(dou);
+            while (dou->zx * dou->zx + dou->zy * dou->zy < 4 && dou->i < dou->max_i)
             {
-                xtemp = burn->zx * burn->zx - burn->zy * burn->zy + burn->cx;
-                burn->zy = ft_abs(2 * burn->zx * burn->zy) + burn->cy;
-                burn->zx = xtemp;
-                burn->i++;
+                dou->tmp = dou->zx;
+                dou->zx = dou->zx * dou->zx - dou->zy * dou->zy + dou->cx;
+                dou->zy = 2 * dou->tmp * dou->zy + dou->cy;
+                dou->i++;
             }
-            put_pixel_image(burn->x, burn->y, burn, burn->color);
+            put_pixel_image(dou->x, dou->y, dou, dou->color);
         }
     }
-    mlx_look(burn);
+    mlx_look(dou);
 }
