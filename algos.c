@@ -68,8 +68,8 @@ void    julia_plane(t_fractal *julia)
     julia->x_end = 1;
     julia->y_start = -1.2;
     julia->y_end = 1.2;
-    julia->zx = (julia->x / (HW / (julia->x_end - julia->x_start)) + julia->x_start) * julia->zoom + julia->x_shift;// 1.5/julia->zoom + julia->x_shift;
-    julia->zy = (julia->y / (HW / (julia->y_end - julia->y_start)) + julia->y_start) * julia->zoom + julia->y_shift;// 1.5/julia->zoom + julia->y_shift;
+    julia->zx = (julia->x / (HW / (julia->x_end - julia->x_start)) + julia->x_start) * julia->zoom + julia->x_shift;
+    julia->zy = (julia->y / (HW / (julia->y_end - julia->y_start)) + julia->y_start) * julia->zoom + julia->y_shift;
     julia->cx = -0.74543;
     julia->cy = 0.11301; 
 }

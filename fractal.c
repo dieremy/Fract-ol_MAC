@@ -62,20 +62,28 @@ void    which_fract(t_fractal *d)
     else if (ft_strcmp(d->name, "Burningship") == 0)
         burningship(d);
 }
+t_fractal   *create_struct()
+{
+    t_fractal   *out;
+
+    out = (t_fractal *)malloc(sizeof(t_fractal));
+    return (out);
+}
 
 int main(int ac, char **av)
 {
-    t_fractal   d;
+    t_fractal   *d;
 
     if (ac == 2)
     {
+        d = create_struct();
         description(ac, av);
-        d.mlx = mlx_init();
-        d.win = mlx_new_window(d.mlx, HW, HW, "FRACTAL");
-        d.img = mlx_new_image(d.mlx, HW, HW);
-        d.addr = (int *)mlx_get_data_addr(d.img, &d.bits_per_pixel, &d.line_length, &d.endian);
-        id(av[1], &d);
-        which_fract(&d);
+        d->mlx = mlx_init();
+        d->win = mlx_new_window(d->mlx, HW, HW, "FRACTAL");
+        d->img = mlx_new_image(d->mlx, HW, HW);
+        d->addr = (int *)mlx_get_data_addr(d->img, &d->bits_per_pixel, &d->line_length, &d->endian);
+        id(av[1], d);
+        which_fract(d);
     }
     else
     {
