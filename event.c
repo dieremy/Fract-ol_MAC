@@ -30,27 +30,11 @@ int mouse_hook(int button, int x, int y, t_fractal *d)
     return (0);  
 }
 
-void    mlx_look(t_fractal *d)
-{
-    mlx_put_image_to_window(d->mlx, d->win, d->img, 0, 0);
-    mlx_key_hook(d->win, ft_key_press, d);
-    mlx_hook(d->win, 17, 1L<<0, ft_close, d);
-    mlx_mouse_hook(d->win, mouse_hook, d);
-    mlx_loop(d->mlx);
-    free(d);
-}
-
-int ft_close(t_fractal *d)
-{
-    mlx_destroy_window(d->mlx, d->win);
-    free(d);
-    exit(0);
-}
-
 int ft_key_press3(int keycode, t_fractal *d)
 {
     if (keycode == KEY_ESC || keycode == KEY_X)
     {
+        write(1, "\nWELCOME HOME SON.\n", 19);
         mlx_destroy_window(d->mlx, d->win);
         free(d);
         exit(0);

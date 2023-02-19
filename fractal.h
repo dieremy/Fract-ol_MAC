@@ -13,7 +13,7 @@
 #ifndef FRACTAL_H
 # define FRACTAL_H
 
-# define HW 1000
+# define HW 800
 
 # include "minilibx_mms_20191025_beta/mlx.h"
 # include "hook.h"
@@ -25,9 +25,6 @@
 
 typedef struct s_fractal
 {
-	void	*mlx;
-	void	*win;
-	void	*img;
 	double	zx; //Z's real part
 	double	zy; //Z's imaginary part
 	double	cx; //C's real part
@@ -40,10 +37,12 @@ typedef struct s_fractal
 	double	tmp;
 	double	x_shift;
 	double	y_shift;
-	double	scaling;
-	double	iterations;
-	float		x; //1. axis for nested cicle
-	float		y; //2. axis for nested cicle
+	double	x; //1. axis for nested cicle
+	double	y; //2. axis for nested cicle
+	char	*name;
+	void	*mlx;
+	void	*win;
+	void	*img;
 	int		*addr;
 	int		bits_per_pixel;
 	int		line_length;
@@ -52,19 +51,20 @@ typedef struct s_fractal
 	int		max_i;
 	int		color;
 	int		shade;
-	char	*name;
 }				t_fractal;
 
 void	put_pixel_image(int x, int y, t_fractal *d, int color);
-void	zoom(t_fractal *d);
-void	which_fract(t_fractal *d);
+void	description(int ac, char **av);
 void	julia_plane(t_fractal *julia);
 void	mand_plane(t_fractal *mBrot);
-void	douady(t_fractal *dou);
 void	mandelbrot(t_fractal *mBrot);
+void	which_fract(t_fractal *d);
+void    dou_plane(t_fractal *dou);
 void	julia(t_fractal *julia);
 void    mlx_look(t_fractal *d);
-void	description(int ac, char **av);
+void	douady(t_fractal *dou);
+void    str_put(t_fractal *d);
+void	zoom(t_fractal *d);
 int		mouse_hook(int button, int x, int y, t_fractal *d);
 int		ft_key_press(int keycode, t_fractal *d);
 int		ft_strcmp(char *s1, char *s2);
